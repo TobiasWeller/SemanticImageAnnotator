@@ -1,8 +1,9 @@
 {
 	"name": "SemanticImageAnnotator",
-	"version": "0.0.0",
+	"version": "0.7.0",
 	"author": [
-		"Tobias Weller"
+		"Tobias Weller",
+		"Felix Obenauer"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:SemanticImageAnnotator",
 	"descriptionmsg": "annotator-desc",
