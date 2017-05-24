@@ -8,7 +8,7 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:SemanticImageAnnotator",
 	"descriptionmsg": "annotator-desc",
 	"license-name": "MIT",
-	"type": "other",
+	"type": "semantic",
 	"AutoloadClasses": {
 		"SemanticImageAnnotatorHooks": "SemanticImageAnnotator.hooks.php",
 		"SemanticImageAnnotatorSpecial": "specials/SemanticImageAnnotatorSpecial.php",
