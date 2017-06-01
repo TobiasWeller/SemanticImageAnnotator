@@ -2,8 +2,8 @@ function startRepairMode (annotationsStore) {
     var stepCount = 0;
 
     swal({
-        title: mw.msg('repair-welcome-title'),
-        text: mw.msg('repair-welcome-text'),
+        title: mw.msg('sia-repair-welcome-title'),
+        text: mw.msg('sia-repair-welcome-text'),
         type: 'info',
         allowOutsideClick: false,
         allowEscapeKey: false
@@ -19,7 +19,7 @@ function startRepairMode (annotationsStore) {
             var annotator = $('#content').annotator().annotator().data('annotator');
             var annotation = annotationsStore.removedAnnotations[stepCount];
             swal({
-                title: mw.msg('repair-annotation-info-title'),
+                title: mw.msg('sia-repair-annotation-info-title'),
                 type: 'info',
                 html:
                 'Quote: <b>'+annotation.quote+'</b><br>' +
@@ -29,12 +29,12 @@ function startRepairMode (annotationsStore) {
                 '<a target="_blank" href="' +
                 mw.config.get('wgScript') + '/Annotation:' +
                 mw.config.get('wgPageName') + '/' + annotation.id +
-                '">' + mw.msg( 'annotation-article-link' ) + '</a><br>' +
-                '<br>' + mw.msg('repair-annotation-info-text'),
+                '">' + mw.msg( 'sia-article-link' ) + '</a><br>' +
+                '<br>' + mw.msg('sia-repair-info-text'),
                 showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText: mw.msg('repair'),
-                cancelButtonText: mw.msg('skip')
+                confirmButtonText: mw.msg('sia-repair'),
+                cancelButtonText: mw.msg('sia-skip')
             }).then(function () {
                 stepCount++;
                 $('.annotator-wrapper').bind('click.repair', function () {
@@ -47,8 +47,8 @@ function startRepairMode (annotationsStore) {
                     $('.annotator-wrapper').unbind('click.repair');
 
                     swal({
-                        title: mw.msg('repair-done-title'),
-                        text: mw.msg('repair-done-text'),
+                        title: mw.msg('sia-repair-done-title'),
+                        text: mw.msg('sia-repair-done-text'),
                         type: 'success',
                         allowOutsideClick: false,
                         allowEscapeKey: false
@@ -65,8 +65,8 @@ function startRepairMode (annotationsStore) {
             });
         }else{
             swal({
-                title: mw.msg('repair-all-done-title'),
-                text:  mw.msg('repair-all-done-text'),
+                title: mw.msg('sia-repair-all-done-title'),
+                text:  mw.msg('sia-repair-all-done-text'),
                 type: 'success'
             }).then(function () {
                 endRepairMode();

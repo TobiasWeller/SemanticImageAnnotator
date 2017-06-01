@@ -2,8 +2,8 @@ api.getAllCategoryPageForms(function(results) {
     var categories = [];
     Object.keys(results).forEach(function(prop) {
         var category = {};
-        category['form'] = results[prop].fulltext;
-        category['form_url'] = results[prop].fullurl;
+        category['form'] = results[prop].fulltext.split('#')[0];
+        category['form_url'] = results[prop].fullurl.split('#')[0];
         category['name'] = results[prop].printouts['SA Category Name'][0];
         category['color'] = results[prop].printouts['SA Category Color'][0];
         categories.push(category);
@@ -20,7 +20,7 @@ function printTable(categories) {
     $( "#sa-categories" ).empty();
     $( "#sa-categories" ).append( '<table id="categories-table" class="table table-sm table-hover" style="margin-bottom: 0px;"><tr></tr></table>' );
     // TODO: localization
-    $( "#categories-table tr" ).append( '<th>'+mw.msg('category')+'</th><th>'+mw.msg('pageforms-form')+'</th><th>'+mw.msg('color')+'</th><th></th>' );
+    $( "#categories-table tr" ).append( '<th>'+mw.msg('sia-category')+'</th><th>'+mw.msg('sia-pageforms-form')+'</th><th>'+mw.msg('sia-color')+'</th><th></th>' );
     categories.forEach(function(category) {
         var row = $( "<tr></tr>" );
         $( "#categories-table" ).append(row);
@@ -29,7 +29,7 @@ function printTable(categories) {
         $( row ).append( '<td><a href="' + category.form_url + '">' + category.form + '</a></td>' );
 		$( row ).append( '<td><span class="special-color-preview annotator-hl-'+category.color+'"></span></td>' );
 
-        var button = $( '<button class="btn btn-danger">'+mw.msg('delete')+'</button>' );
+        var button = $( '<button class="btn btn-danger">'+mw.msg('sia-delete')+'</button>' );
         button.click(function() {
             deleteCategoryPageFormAssignment(category.name, category.form, category.color);
         });
@@ -46,7 +46,7 @@ function printTable(categories) {
     var categories_form = categories.map(function (item) {
         return item.form;
     });
-    categories_form.push('Form:TextAnnotation');
+    categories_form.push('Form:ImageAnnotation');
 
     api.getAllPageFormPages(function(allpages) {
         allpages.forEach(function(item) {
@@ -65,7 +65,7 @@ function printTable(categories) {
     });
 
     hl_colors.forEach(function (color) {
-        var color_option = $( '<option class="annotator-hl-' + color + '" value="' + color + '">' + mw.msg(color) + '</option>' );
+        var color_option = $( '<option class="annotator-hl-' + color + '" value="' + color + '">' + mw.msg("sia-" + color) + '</option>' );
         $( '#new_category_color' ).append( color_option );
         $( '#new_category_color' ).change(function () {
             var selected_color = $( "#new_category_color" ).val();
@@ -74,7 +74,7 @@ function printTable(categories) {
         });
     });
 
-    var button = $( '<button class="btn btn-primary">'+mw.msg('add')+'</button>' );
+    var button = $( '<button class="btn btn-primary">'+mw.msg('sia-add')+'</button>' );
     button.click(function() {
         var name = $( "#new_category_name" ).val();
         var form = $( "#new_category_form" ).val();
@@ -88,8 +88,9 @@ function printTable(categories) {
 function deleteCategoryPageFormAssignment(name, form, color){
     appendLoadingSpinner();
     api.getPageContent(form, function (old_form_content) {
-        old_form_content = old_form_content.replace('[[Form Type::SemanticImageAnnotator]][[SA Category Name::'+name+']][[SA Category Color::'+color+']]\n', '');
-        // TODO: remove text annotation template
+        old_form_content = old_form_content.replace('{{#subobject:SemanticImageAnnotator\n|Form Type=SemanticImageAnnotator\n|SA Category Name='+name+'\n|SA Category Color='+color+'\n}}\n', '');
+        // Remove text annotation template
+        old_form_content = old_form_content.replace(/({{{for template\|ImageAnnotation}}})(.|\n)*({{{end template}}})/i, "");
         api.createPage(form, old_form_content, function () {
             window.location.reload(true);
         });
@@ -102,13 +103,13 @@ function buildCategoryPageFormAssignment(name, form, color){
     }
     appendLoadingSpinner();
     api.getPageContent(form, function (new_form_content) {
-        api.getPageContent('Form:TextAnnotation', function (sa_form_content) {
-            var regex_start = /\{\{\{for template\|TextAnnotation}}}/g;
+        api.getPageContent('Form:ImageAnnotation', function (sa_form_content) {
+            var regex_start = /\{\{\{for template\|ImageAnnotation}}}/g;
             var regex_end = /\{\{\{end template}}}/g;
-            var text_annotation_form_content = util.extractTextBetweenRegexes(sa_form_content, regex_start, regex_end);
+            var image_annotation_form_content = util.extractTextBetweenRegexes(sa_form_content, regex_start, regex_end);
 
-            new_form_content = new_form_content.replace(/'''[\w\s]+:'''/g, text_annotation_form_content + '\n\'\'\'Free text:\'\'\'');
-            new_form_content = new_form_content.replace('</noinclude>', '[[Form Type::SemanticImageAnnotator]][[SA Category Name::'+name+']][[SA Category Color::'+color+']]\n</noinclude>');
+            new_form_content = new_form_content.replace(/'''[\w\s]+:'''/g, image_annotation_form_content + '\n\'\'\'Free text:\'\'\'');
+            new_form_content = new_form_content.replace('</noinclude>', '{{#subobject:SemanticImageAnnotator\n|Form Type=SemanticImageAnnotator\n|SA Category Name='+name+'\n|SA Category Color='+color+'\n}}\n</noinclude>');
 
             api.createPage(form, new_form_content, function () {
                 window.location.reload(true);

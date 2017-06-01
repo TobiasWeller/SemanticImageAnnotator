@@ -11,6 +11,18 @@ class SemanticImageAnnotatorSpecial extends SpecialPage {
 		parent::__construct( 'SemanticImageAnnotator' );
 	}
 
+    /**
+     * Override the parent to set where the special page appears on Special:SpecialPages
+     * 'other' is the default. If that's what you want, you do not need to override.
+     * Specify 'media' to use the <code>specialpages-group-media</code> system interface message, which translates to 'Media reports and uploads' in English;
+     * 
+     * @return string
+     */
+    function getGroupName() {
+        return 'annotation';
+    }
+
+
 	/**
 	 * Show the page to the user
 	 *
@@ -21,18 +33,18 @@ class SemanticImageAnnotatorSpecial extends SpecialPage {
 
 		$out = $this->getOutput();
 
-		$out->setPageTitle( $this->msg( 'sia-annotator-special-title' ) );
+		$out->setPageTitle( $this->msg( 'sia-special-title' ) );
 
-		$out->addWikiMsg( 'sia-annotator-special-intro' );
+		$out->addWikiMsg( 'sia-special-intro' );
 
         $installForm = HTMLForm::factory( 'ooui', [], $this->getContext(), 'install-form' );
 
         if( !self::pageExists( 'Form:ImageAnnotation' ) )
         {
-            $out->addWikiText( '== '.$this->msg( 'install' ).' ==' );
+            $out->addWikiText( '== '.$this->msg( 'sia-install' ).' ==' );
             $out->addWikiMsg( 'sia-install-description' );
 
-            $installForm->setSubmitTextMsg( 'install-button-submit' );
+            $installForm->setSubmitTextMsg( 'sia-install-button-submit' );
             $installForm->setSubmitCallback( [ 'SemanticImageAnnotatorSpecial', 'install' ] );
 
             $installForm->show();
@@ -41,7 +53,7 @@ class SemanticImageAnnotatorSpecial extends SpecialPage {
         {
             $out->addWikiText( '== '.$this->msg( 'sia-category-pageform-assignment' ).' ==' );
             $out->addWikiMsg( 'sia-category-pageform-assignment-description' );
-            $out->addHTML( '<div id="sa-categories" class="oo-ui-panelLayout-padded oo-ui-panelLayout-framed">'.$this->msg( 'loading' ).'</div>' );
+            $out->addHTML( '<div id="sa-categories" class="oo-ui-panelLayout-padded oo-ui-panelLayout-framed">'.$this->msg( 'sia-loading' ).'</div>' );
 
         }
 
@@ -68,20 +80,20 @@ class SemanticImageAnnotatorSpecial extends SpecialPage {
 
         // # Create Category
         // - Annotation
-        $text = 'This is the Annotation category used by SemanticImageAnnotator.';
+        $text = 'This is the Annotation category used by the Annotator Tools.';
         self::editPage( 'Category:Annotation', $text );
         //   - TextAnnotation (subcategory)
-        $text = 'This is the TextAnnotation category used by SemanticImageAnnotator.'."\n\n";
+        $text = 'This is the ImageAnnotation category used by Semantic Image Annotator.'."\n\n";
         $text .= '[[Category:Annotation]]';
         self::editPage( 'Category:ImageAnnotation', $text );
 
         // # Create Template
         // - TextAnnotationTemplate
         $text = '<noinclude>'."\n";
-        $text .= 'This is the "SemanticImageAnnotation" template.'."\n";
+        $text .= 'This is the "Semantic Image Annotation" template.'."\n";
         $text .= 'It should be called in the following format:'."\n";
         $text .= '<pre>'."\n";
-        $text .= '{{TextAnnotation'."\n";
+        $text .= '{{ImageAnnotation'."\n";
         $text .= '|AnnotationOf='."\n";
         $text .= '|AnnotationComment='."\n";
         $text .= '|LastModificationDate='."\n";
@@ -114,7 +126,7 @@ class SemanticImageAnnotatorSpecial extends SpecialPage {
         // # Create Form
         // - TextAnnotationForm
         $text = '<noinclude>'."\n";
-        $text .= 'Please do not use or modify this form because it belongs to SemanticImageAnnotator Extension.'."\n";
+        $text .= 'Please do not use or modify this form because it belongs to Semantic Image Annotator Extension.'."\n";
         $text .= '</noinclude><includeonly>'."\n";
         $text .= '{{{for template|ImageAnnotation}}}'."\n";
         $text .= '{| class="formtable"'."\n";
@@ -146,7 +158,7 @@ class SemanticImageAnnotatorSpecial extends SpecialPage {
     static function editPage( $pagename, $text ) {
         $title = Title::newFromText($pagename);
         $wikiPage = new WikiPage( $title );
-        $summary = wfMessage( 'autogenerate-summary' )->inContentLanguage()->text();
+        $summary = wfMessage( 'sia-autogenerate-summary' )->inContentLanguage()->text();
         $content = ContentHandler::makeContent( $text, $title );
         $wikiPage->doEditContent( $content, $summary, 0 );
 

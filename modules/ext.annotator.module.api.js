@@ -15,7 +15,7 @@ var api = {
     },
 
     getAllCategoryPageForms: function (callback) {
-        var url = mw.config.get('wgScriptPath')+'/api.php?action=ask&query=[[Form Type::ImageAnnotation]]|?SA Category Name|?SA Category Color&format=json';
+        var url = mw.config.get('wgScriptPath')+'/api.php?action=ask&query=[[Form Type::SemanticImageAnnotator]]|?SA Category Name|?SA Category Color&format=json';
         $.getJSON(url, function(json) {
             callback(json.query.results);
         });
@@ -57,7 +57,6 @@ var api = {
     existPage: function (pagename,callback) {
         var url = mw.config.get('wgScriptPath')+'/api.php?action=query&titles=' + pagename + '&format=json';
         $.getJSON(url, function(json) {
-          debugger;
             pid = Object.keys(json.query.pages)[0];
             if(pid != -1){
                 callback(true);
