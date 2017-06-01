@@ -19,8 +19,8 @@ class SemanticImageAnnotatorHooks {
         global $wgNamespacesWithSubpages;
 
         if ( !defined( 'NS_ANNOTATION' ) ) {
-            define( 'NS_ANNOTATION', 448 );
-            define( 'NS_ANNOTATION_TALK', 449 );
+            define( 'NS_ANNOTATION', 248 );
+            define( 'NS_ANNOTATION_TALK', 249 );
         }
 
         $namespaces[NS_ANNOTATION] = 'Annotation';
@@ -35,8 +35,8 @@ class SemanticImageAnnotatorHooks {
         global $smwgNamespacesWithSemanticLinks;
 
         if ( !defined( 'NS_ANNOTATION' ) ) {
-            define( 'NS_ANNOTATION', 448 );
-            define( 'NS_ANNOTATION_TALK', 449 );
+            define( 'NS_ANNOTATION', 248 );
+            define( 'NS_ANNOTATION_TALK', 249 );
         }
 
         $smwgNamespacesWithSemanticLinks[NS_ANNOTATION] = true;
@@ -53,13 +53,6 @@ class SemanticImageAnnotatorHooks {
             SMW\PropertyRegistry::getInstance()->registerProperty ( "___SA_CATEGORY_NAME_PROPERTY", '_txt', "SA Category Name", true, true );
             SMW\PropertyRegistry::getInstance()->registerProperty ( "___SA_CATEGORY_COLOR_PROPERTY", '_txt', "SA Category Color", true, true );
         }
-        /*echo ""+SMW\PropertyRegistry::getInstance 	( );
-        /*SMW\PropertyRegistry::registerProperty 	($id,
-            $typeId,
-            $label = false,
-            $isVisible = false,
-            $isAnnotable = true
-        );*/
 
         return true;
     }

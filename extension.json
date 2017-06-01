@@ -1,12 +1,12 @@
 {
-	"name": "SemanticImageAnnotator",
+	"name": "Semantic Image Annotator",
 	"version": "0.7.0",
 	"author": [
-    "Tobias Weller",
+    "[http://www.aifb.kit.edu/web/Tobias_Weller Tobias Weller]",
     "Felix Obenauer"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:SemanticImageAnnotator",
-	"descriptionmsg": "annotator-desc",
+	"url": "https://www.mediawiki.org/wiki/Extension:Semantic Image Annotator",
+	"descriptionmsg": "sia-desc",
 	"license-name": "MIT",
 	"type": "semantic",
 	"AutoloadClasses": {
@@ -39,18 +39,19 @@
 	"ResourceModules": {
 		"ext.imageannotator": {
 			"scripts": [
+				"modules/ext.annotator.module.api.js",
 				"modules/ext.annotator.js"
 			],
 			"styles": [
 				"modules/ext.annotator.css"
 			],
 			"messages": [
-				"sia-helloworld",
-				"sia-annotate-button-text",
-				"sia-annotate-button-desc",
-				"sia-annotate-icon-desc",
-				"sia-annotate-welcome-message",
-				"sia-annotate-godbye-message"
+				"sia-button-text",
+				"sia-please-install",
+				"sia-button-desc",
+				"sia-icon-desc",
+				"sia-welcome-message",
+				"sia-godbye-message"
 			],
 			"dependencies": [
 				"mediawiki.jqueryMsg"
@@ -76,11 +77,11 @@
 				"modules/lib/css/theme-dark/annotorious-dark.css"
 			],
 			"messages": [
-				"annotation-main-page-description",
-				"annotations",
-				"annotate-repair-notification",
-				"annotate-repair-button-text",
-				"annotate-repair-button-desc"
+				"sia-main-page-description",
+				"sia-annotations",
+				"sia-repair-notification",
+				"sia-repair-button-text",
+				"sia-repair-button-desc"
 			],
 			"dependencies": []
 		},
@@ -93,17 +94,17 @@
 				"modules/ext.annotator.repair.css"
 			],
 			"messages": [
-				"repair-welcome-title",
-				"repair-welcome-text",
-				"repair-annotation-info-title",
-				"repair-annotation-info-text",
-				"annotation-article-link",
-				"repair-done-title",
-				"repair-done-text",
-				"repair",
-				"skip",
-				"repair-all-done-title",
-				"repair-all-done-text"
+				"sia-repair-welcome-title",
+				"sia-repair-welcome-text",
+				"sia-repair-info-title",
+				"sia-repair-info-text",
+				"sia-article-link",
+				"sia-repair-done-title",
+				"sia-repair-done-text",
+				"sia-repair",
+				"sia-skip",
+				"sia-repair-all-done-title",
+				"sia-repair-all-done-text"
 			]
 		},
 		"ext.imageannotator.special": {
@@ -118,16 +119,16 @@
 				"modules/lib/plugins/annotator_view/css/style.css"
 			],
 			"messages": [
-				"category",
-				"pageforms-form",
-				"color",
-				"add",
-				"delete",
-				"red",
-				"yellow",
-				"green",
-				"blue",
-				"grey"
+				"sia-category",
+				"sia-pageforms-form",
+				"sia-color",
+				"sia-add",
+				"sia-delete",
+				"sia-red",
+				"sia-yellow",
+				"sia-green",
+				"sia-blue",
+				"sia-grey"
 			],
 			"dependencies": []
 		}
@@ -141,14 +142,14 @@
 	},
 	"namespaces": [
 		{
-			"id": 448,
+			"id": 248,
 			"constant": "NS_ANNOTATION",
-			"name": "ImageAnnotation"
+			"name": "Annotation"
 		},
 		{
-			"id": 449,
+			"id": 249,
 			"constant": "NS_ANNOTATION_TALK",
-			"name": "ImageAnnotation_talk"
+			"name": "Annotation_talk"
 		}
 	],
 	"callback": "SemanticImageAnnotatorHooks::afterInit",
