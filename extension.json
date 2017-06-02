@@ -2,8 +2,8 @@
 	"name": "Semantic Image Annotator",
 	"version": "0.7.0",
 	"author": [
-    "[http://www.aifb.kit.edu/web/Tobias_Weller Tobias Weller]",
-    "Felix Obenauer"
+		"[http://www.aifb.kit.edu/web/Tobias_Weller Tobias Weller]",
+		"Felix Obenauer"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Semantic Image Annotator",
 	"descriptionmsg": "sia-desc",
