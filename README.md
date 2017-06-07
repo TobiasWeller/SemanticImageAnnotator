@@ -38,6 +38,7 @@ Click [here](https://sandbox.semantic-mediawiki.org/wiki/Fichier:Logo_WikiFF.PNG
 
 ## Annotator Setup
 * Go to Special Pages and Click on *Semantic Image Annotator* under the Group *Annotation*
+     * *Remark: Only Users with sysops rights are allowed to access the page.*
 * Click on the Install button to setup Semantic Image Annotator and refresh the Special Page
 * You can now Link PageForms to Annotation-Categories by using the Table on Special Page.
 
@@ -50,6 +51,7 @@ Click [here](https://sandbox.semantic-mediawiki.org/wiki/Fichier:Logo_WikiFF.PNG
 * On the top appears the *Annotate Image* Button. Click on it to start the Annotation Mode
 * Afterwards you can select an area. Afterwards appears a popup
 * You can enter a Comment to the Annotation and select an Annotation-Category (Linked by using the Special Page)
+     * *Remark: If the user has no permission to create/edit pages. Then the popup is disabled.*
 * A popup appears to enter additional information, based on the selected PageForm
 * Click on save to store the annotation. </br>
 
