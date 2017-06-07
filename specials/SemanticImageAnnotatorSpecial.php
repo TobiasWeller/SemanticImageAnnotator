@@ -8,7 +8,7 @@
 
 class SemanticImageAnnotatorSpecial extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'SemanticImageAnnotator' );
+		parent::__construct( 'SemanticImageAnnotator', 'editinterface' ); //restrict to sysops
 	}
 
     /**
