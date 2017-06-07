@@ -41,8 +41,6 @@ function initAnnotator(){
 		anno.addPlugin('MediaWiki', { activate: true });
 
 		anno.makeAnnotatable($('.fullImageLink img'));
-
-
 }
 
 var categoriesMap = new Object();

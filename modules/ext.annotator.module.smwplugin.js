@@ -4,6 +4,15 @@ annotorious.plugin.MediaWiki = function(opt_config_options) {
 annotorious.plugin.MediaWiki.prototype.initPlugin = function(anno) {
 
   annotorious.plugin.MediaWiki.prototype.loadAnnotationsFromLocalVar();
+
+  //Delete Editor, if not editable
+  if (!$( "#ca-edit" ).length) {
+    //Delete annotator-editor 
+    $( ".annotorious-editor-button-save" ).remove();
+  }
+  
+  
+
   anno.addHandler('onEditorShown', function(annotation) {
     $('#SMWPlugin').remove();
     var str = "<form id='SMWPlugin'>";
@@ -60,6 +69,18 @@ anno.addHandler('onAnnotationRemoved', function(annotation) {
 
 anno.addHandler('onAnnotationUpdated', function(annotation) {
   annotorious.plugin.MediaWiki.prototype.annotationPageForm(annotation);
+});
+
+anno.addHandler('onMouseOverAnnotation', function(event) {
+  if (!$( "#ca-edit" ).length) {
+    $( ".annotorious-popup-buttons" ).remove();
+  }
+});
+anno.addHandler('onEditorShown', function(annotation) {
+  if (!$( "#ca-edit" ).length) {
+    $(".annotorious-editor-text").attr("placeholder", 'No Rights to Create Annotations...');
+    $('.annotorious-editor-text').prop('disabled', true);
+  }
 });
 
 

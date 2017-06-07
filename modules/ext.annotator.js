@@ -13,7 +13,7 @@ var installed = false;
         });
 
         // append annotate button and status to menu
-        if (mw.config.get('wgAction') == 'view' && $( "#ca-edit" ).length) {
+        if (mw.config.get('wgAction') == 'view') {
             $('#p-views>ul').append('<li id="ca-annotate"><span><a href="#" title="' + mw.msg('sia-button-desc') + '" accesskey="a">' + mw.msg('sia-button-text') + '</a><i class="fa fa-check" aria-hidden="true"></i></span></li>');
 
             // do if annotate button is clicked
