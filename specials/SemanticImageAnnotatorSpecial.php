@@ -55,6 +55,18 @@ class SemanticImageAnnotatorSpecial extends SpecialPage {
             $out->addWikiMsg( 'sia-category-pageform-assignment-description' );
             $out->addHTML( '<div id="sa-categories" class="oo-ui-panelLayout-padded oo-ui-panelLayout-framed">'.$this->msg( 'sia-loading' ).'</div>' );
 
+            
+            $out->addWikiText( '== '.$this->msg( 'sta-reinstall-header' ).' ==' );
+            $btn = new OOUI\ButtonWidget( array(
+                'infusable' => true,
+                'id' => 'reinstall-btn',
+                'label' => ''.$this->msg( 'sta-reinstall-header' ).'',
+            ) );
+
+            
+            $out->addWikiText( ''.$this->msg( 'sta-reinstall-text' ).'' );
+            $out->addHTML($btn);
+
         }
 
         $out->addModules( 'ext.imageannotator.special' );

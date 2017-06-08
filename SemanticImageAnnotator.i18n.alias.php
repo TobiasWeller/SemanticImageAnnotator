@@ -1,19 +1,23 @@
 <?php
 /**
- * Aliases for special pages of the Annotator extension
+ * Aliases for Semantic Image Annotator
  *
  * @file
  * @ingroup Extensions
  */
 
-$specialPageAliases = [];
+$specialPageAliases = array();
 
-/** English (English) */
-$specialPageAliases['en'] = [
-	'Annotator' => [ 'Annotator' ],
-];
+/** English
+ * @author Tobias Weller
+ */
+$specialPageAliases['en'] = array(
+	'SemanticImageAnnotator' => array( 'SemanticImageAnnotator', 'Semantic Image Annotator' ),
+);
 
-/** Deutsch (Deutsch) */
-$specialPageAliases['de'] = [
-	'Annotator' => [ 'Annotator' ],
-];
+/** Deutsch
+ * @author Tobias Weller
+ */
+$specialPageAliases['de'] = array(
+	'SemanticImageAnnotator' => array( 'SemanticImageAnnotator', 'Semantic Image Annotator' ),
+);

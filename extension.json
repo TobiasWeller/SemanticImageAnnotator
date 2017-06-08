@@ -1,6 +1,6 @@
 {
 	"name": "Semantic Image Annotator",
-	"version": "0.7.1",
+	"version": "0.7.2",
 	"author": [
 		"[http://www.aifb.kit.edu/web/Tobias_Weller Tobias Weller]",
 		"Felix Obenauer"
@@ -111,12 +111,15 @@
 			"scripts": [
 				"modules/ext.annotator.module.api.js",
 				"modules/ext.annotator.module.util.js",
-				"modules/ext.annotator.special.js"
+				"modules/ext.annotator.special.js",
+				"modules/ext.annotator.reinstall.js",
+				"modules/lib/sweetalert2.min.js"
 			],
 			"styles": [
 				"modules/lib/bootstrap.css",
 				"modules/ext.annotator.style_special.css",
-				"modules/lib/plugins/annotator_view/css/style.css"
+				"modules/lib/plugins/annotator_view/css/style.css",
+				"modules/lib/sweetalert2.min.css"
 			],
 			"messages": [
 				"sia-category",
@@ -128,7 +131,10 @@
 				"sia-yellow",
 				"sia-green",
 				"sia-blue",
-				"sia-grey"
+				"sia-grey",
+				"sia-reinstall-header",
+				"sia-request-reinstall",
+				"sia-confirm-reinstall"
 			],
 			"dependencies": []
 		}
