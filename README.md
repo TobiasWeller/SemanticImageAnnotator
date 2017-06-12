@@ -4,7 +4,7 @@
 Semantic Image Annotator
 ======================
 
-The repository contains the Semantic Image Annotator extension for semantic MediaWiki. The extension provides a plugin for capturing Image Annotations in Semantic MediaWiki of Uploaded Image Files.
+The repository contains the Semantic Image Annotator extension for Semantic MediaWiki. The extension provides a plugin for capturing Image Annotations in Semantic MediaWiki of Uploaded Image Files.
 
 Click [here](https://sandbox.semantic-mediawiki.org/wiki/Fichier:Logo_WikiFF.PNG) for a Demo.
 
